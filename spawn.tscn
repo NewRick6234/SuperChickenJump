@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6duwvg77ojo2"]
+
+[ext_resource type="Script" uid="uid://bmwvjj67wnfg2" path="res://spawn.gd" id="1_3a72r"]
+[ext_resource type="PackedScene" uid="uid://2oqfqxx5b61g" path="res://enemy.tscn" id="2_yqulk"]
+
+[node name="spawn" type="Node2D"]
+script = ExtResource("1_3a72r")
+enemy = ExtResource("2_yqulk")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
