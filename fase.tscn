@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://4pqund3nukl7"]
+[gd_scene load_steps=11 format=4 uid="uid://4pqund3nukl7"]
 
 [ext_resource type="Script" uid="uid://cb04v8ywdemyw" path="res://fase.gd" id="1_udkue"]
-[ext_resource type="PackedScene" uid="uid://d30ebo7uakvax" path="res://character_body_2d.tscn" id="2_qcukj"]
+[ext_resource type="PackedScene" uid="uid://d30ebo7uakvax" path="res://player.tscn" id="2_qcukj"]
 [ext_resource type="Texture2D" uid="uid://br1helh4gs5uq" path="res://oak_woods_v1.0/background/background_layer_1.png" id="4_vyao0"]
 [ext_resource type="Texture2D" uid="uid://comrpksgigqmc" path="res://oak_woods_v1.0/background/background_layer_2.png" id="5_mtfop"]
 [ext_resource type="Texture2D" uid="uid://dxlpjxq4smy2g" path="res://oak_woods_v1.0/background/background_layer_3.png" id="6_6nugs"]
 [ext_resource type="Texture2D" uid="uid://bp483g1xas8vx" path="res://oak_woods_v1.0/oak_woods_tileset.png" id="6_vyao0"]
 [ext_resource type="PackedScene" uid="uid://c6duwvg77ojo2" path="res://spawn.tscn" id="7_mtfop"]
+[ext_resource type="AudioStream" uid="uid://21rpn2ncaisc" path="res://sounds/Police Story Theme.mp3" id="8_6nugs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mtfop"]
 texture = ExtResource("6_vyao0")
@@ -485,5 +486,10 @@ horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="ThemeSong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6nugs")
+volume_db = -2.0
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

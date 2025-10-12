@@ -1,7 +1,6 @@
 extends Node2D
 
 
- 
 @export var speed: float = 300.0
 @export var time = 1.5
 var score = 0
@@ -43,3 +42,6 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	speed += 5 
 	
+
+
+ 

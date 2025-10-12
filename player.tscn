@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://d30ebo7uakvax"]
+[gd_scene load_steps=23 format=3 uid="uid://d30ebo7uakvax"]
 
 [ext_resource type="Texture2D" uid="uid://dnqjtuiklix07" path="res://Untitled-removebg-preview.png" id="1_f50pn"]
 [ext_resource type="Script" uid="uid://bss4mgihbqfdc" path="res://character_body_2d.gd" id="1_ij6vw"]
 [ext_resource type="Texture2D" uid="uid://d4guoih1epwm3" path="res://chicken-removebg-preview.png" id="3_ghijl"]
+[ext_resource type="AudioStream" uid="uid://bjlv55wllvhte" path="res://sounds/roblox-classic-jump.mp3" id="4_hqtel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ij6vw"]
 size = Vector2(66, 116)
@@ -132,7 +133,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ij6vw")
 
@@ -146,3 +147,6 @@ sprite_frames = SubResource("SpriteFrames_qnedo")
 animation = &"run"
 autoplay = "run"
 frame_progress = 0.2719652
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hqtel")

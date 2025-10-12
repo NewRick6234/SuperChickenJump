@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://crev2inf1u6xe"]
+
+[ext_resource type="Script" uid="uid://dn12u7ocbrg15" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://c0u4hnjw5p85w" path="res://background.jpg" id="2_7vrkn"]
+[ext_resource type="FontFile" uid="uid://byae7ti0q165m" path="res://sukajan-brush-font/SukajanBrushDemoRegular-q2Mmx.otf" id="3_fu7sn"]
+[ext_resource type="AudioStream" uid="uid://21rpn2ncaisc" path="res://sounds/Police Story Theme.mp3" id="4_jix8l"]
+
+[sub_resource type="Theme" id="Theme_fu7sn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jix8l"]
+texture = ExtResource("2_7vrkn")
+
+[sub_resource type="Theme" id="Theme_jix8l"]
+default_font = ExtResource("3_fu7sn")
+default_font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_glbon"]
+font = ExtResource("3_fu7sn")
+font_size = 45
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_06t4h")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fu7sn")
+theme_override_styles/panel = SubResource("StyleBoxTexture_jix8l")
+
+[node name="btnStart" type="Button" parent="."]
+modulate = Color(0.9867516, 0.9867516, 0.9867516, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.4712963
+anchor_right = 0.55
+anchor_bottom = 0.5287037
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jix8l")
+theme_type_variation = &"FlatButton"
+text = "Start Game"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.0
+offset_right = 107.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "The Revenge of the Chicken"
+label_settings = SubResource("LabelSettings_glbon")
+
+[node name="ThemeSong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jix8l")
+volume_db = -2.0
+autoplay = true
+
+[connection signal="pressed" from="btnStart" to="." method="_on_btn_start_pressed"]
