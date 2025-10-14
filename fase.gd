@@ -3,6 +3,7 @@ extends Node2D
 
 @export var speed: float = 300.0
 @export var time = 1.5
+@export var canspawn: bool = true
 var score = 0
 
 @onready var label: Label = $Label
@@ -28,14 +29,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	score+= 1
-	label.text = "Score: " + str(score)
-	parallax_layer.scroll_offset.x -= speed * 0.1 * delta
-	parallax_layer_2.scroll_offset.x -= speed * 0.26 * delta
-	parallax_layer_3.scroll_offset.x -= speed * delta
-	tile_map_layer.position -= Vector2(speed,0) * delta
-	if tile_map_layer.position.x <= -900:
-		tile_map_layer.position = Vector2(0,0)
+	if canspawn:
+		score+= 1
+		label.text = "Score: " + str(score)
+		parallax_layer.scroll_offset.x -= speed * 0.1 * delta
+		parallax_layer_2.scroll_offset.x -= speed * 0.26 * delta
+		parallax_layer_3.scroll_offset.x -= speed * delta
+		tile_map_layer.position -= Vector2(speed,0) * delta
+		if tile_map_layer.position.x <= -900:
+			tile_map_layer.position = Vector2(0,0)
 	 
 
 

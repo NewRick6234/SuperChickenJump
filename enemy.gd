@@ -1,7 +1,8 @@
-extends Node2D
-@onready var enemy: Area2D = $"."
+extends StaticBody2D
+@onready var enemy: StaticBody2D= $"."
 @onready var fase: Node2D = $"."
-
+@onready var spawn: Node2D = $"."
+var spawnar = true
 
 
 const speed = 300.00
@@ -12,19 +13,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
 	enemy.position -= Vector2(fase.speed*2,0) * delta
 	if enemy.position.x <= -14:
 		queue_free()
-	
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		call_deferred("recarregar")
-func recarregar():
-	get_tree().change_scene_to_file("res://main_menu.tscn")
-
+		
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:	
-	call_deferred("queue_free()")
+	queue_free()
+	

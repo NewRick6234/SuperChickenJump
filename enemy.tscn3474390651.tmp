@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://2oqfqxx5b61g"]
+[gd_scene load_steps=10 format=3 uid="uid://2oqfqxx5b61g"]
 
 [ext_resource type="Script" uid="uid://c4kqr3abi6wjh" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://mmkybslb5ynb" path="res://oak_woods_v1.0/Untitled-removebg-preview (1).png" id="2_4gyqm"]
+[ext_resource type="AudioStream" uid="uid://dp71ik4bv624a" path="res://sounds/deathSound.mp3" id="3_qi2p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
 atlas = ExtResource("2_4gyqm")
@@ -40,9 +41,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
-size = Vector2(100, 21.5)
+size = Vector2(100, 35)
 
-[node name="enemy" type="StaticBody2D" groups=["enemy"]]
+[node name="enemy" type="RigidBody2D" groups=["enemy"]]
 script = ExtResource("1_4gyqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -55,10 +56,21 @@ frame_progress = 0.7429063
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 11.125)
+position = Vector2(0, 1)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_4gyqm")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="dano" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qi2p4")
+volume_db = 6.105
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

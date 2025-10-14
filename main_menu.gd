@@ -7,4 +7,8 @@ func _ready() -> void:
 
 
 func _on_btn_start_pressed() -> void:
+	$Timer.start()
+	$playSound.play()
+
+func _on_timer_timeout() -> void:
 	get_tree().change_scene_to_file("res://fase.tscn")

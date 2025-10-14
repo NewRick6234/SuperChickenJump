@@ -6,6 +6,8 @@ const JUMP_VELOCITY = -400.0
 @export var fall_multiplier: float = 1.5
 @export var gravity: float = 900.0
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound
+@onready var fase: Node2D = $".."
+@onready var dano_sound: AudioStreamPlayer2D = $DanoSound
 
 
 func _physics_process(delta: float) -> void:
@@ -28,7 +30,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_child_entered_tree(node: Node) -> void:
-	if node.is_in_group("enemy"):
-		print(node)
-		
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		fase.canspawn = false
+		dano_sound.play()
+		$Timer.start()
+	
+
+
+func _on_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://main_menu.tscn")

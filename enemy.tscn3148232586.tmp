@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://2oqfqxx5b61g"]
+[gd_scene load_steps=10 format=3 uid="uid://2oqfqxx5b61g"]
 
 [ext_resource type="Script" uid="uid://c4kqr3abi6wjh" path="res://enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://mmkybslb5ynb" path="res://oak_woods_v1.0/Untitled-removebg-preview (1).png" id="2_4gyqm"]
+[ext_resource type="AudioStream" uid="uid://dp71ik4bv624a" path="res://sounds/deathSound.mp3" id="3_qi2p4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
 atlas = ExtResource("2_4gyqm")
@@ -61,4 +62,13 @@ shape = SubResource("RectangleShape2D_4gyqm")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="dano" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qi2p4")
+volume_db = 6.105
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -474,7 +474,7 @@ tile_map_data = PackedByteArray("AAAAACAAAAABAAEAAAAAACEAAAABAAIAAAABACAAAAACAAE
 tile_set = SubResource("TileSet_6nugs")
 
 [node name="spawn" parent="." instance=ExtResource("7_mtfop")]
-position = Vector2(1015, 469)
+position = Vector2(992, 466)
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0

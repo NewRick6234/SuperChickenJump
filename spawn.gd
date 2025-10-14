@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var fase: Node2D = $".."
 
-
 @export var enemy: PackedScene
 var randomizer = 0
 
@@ -14,7 +13,9 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-	
+func canSpawn(num:int):
+	if num == 1:
+		fase.canSpawn = false	
 
 
 func _on_timer_timeout() -> void:
@@ -23,7 +24,8 @@ func _on_timer_timeout() -> void:
 		fase.time -= 0.01
 	timer.wait_time = fase.time
 	print(timer.wait_time)
-	if randomizer == 1 or randomizer ==2:
-		var enemy_instance = enemy.instantiate()
-		add_sibling(enemy_instance)
-		enemy_instance.global_position = global_position
+	if fase.canspawn:
+		if randomizer == 1 or randomizer ==2:
+			var enemy_instance = enemy.instantiate()
+			add_sibling(enemy_instance)
+			enemy_instance.global_position = global_position

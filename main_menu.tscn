@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://crev2inf1u6xe"]
+[gd_scene load_steps=10 format=3 uid="uid://crev2inf1u6xe"]
 
 [ext_resource type="Script" uid="uid://dn12u7ocbrg15" path="res://main_menu.gd" id="1_06t4h"]
 [ext_resource type="Texture2D" uid="uid://c0u4hnjw5p85w" path="res://background.jpg" id="2_7vrkn"]
 [ext_resource type="FontFile" uid="uid://byae7ti0q165m" path="res://sukajan-brush-font/SukajanBrushDemoRegular-q2Mmx.otf" id="3_fu7sn"]
 [ext_resource type="AudioStream" uid="uid://21rpn2ncaisc" path="res://sounds/Police Story Theme.mp3" id="4_jix8l"]
+[ext_resource type="AudioStream" uid="uid://cvj8tkldbbih" path="res://sounds/Gong-Sound-Effect.mp3" id="5_glbon"]
 
 [sub_resource type="Theme" id="Theme_fu7sn"]
 
@@ -67,6 +68,13 @@ label_settings = SubResource("LabelSettings_glbon")
 [node name="ThemeSong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_jix8l")
 volume_db = -2.0
-autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="playSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_glbon")
+volume_db = 17.789
 
 [connection signal="pressed" from="btnStart" to="." method="_on_btn_start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
