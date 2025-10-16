@@ -1,6 +1,6 @@
 extends StaticBody2D
 @onready var enemy: StaticBody2D= $"."
-@onready var fase: Node2D = $"."
+@onready var fase: Node2D = $"."  
 @onready var spawn: Node2D = $"."
 var spawnar = true
 

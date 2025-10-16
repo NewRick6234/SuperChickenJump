@@ -4,6 +4,7 @@
 
 [node name="spawn" type="Node2D"]
 script = ExtResource("1_3a72r")
+enemy = Array[Node2D]([null, null])
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

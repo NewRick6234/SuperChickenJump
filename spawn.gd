@@ -2,7 +2,12 @@ extends Node2D
 
 @onready var fase: Node2D = $".."
 
-@export var enemy: PackedScene
+var enemy =[
+	preload("res://enemy.tscn"),
+	preload("res://enemy_2.tscn")
+]
+var choice: int
+
 var randomizer = 0
 
 @onready var timer: Timer = $Timer
@@ -19,13 +24,15 @@ func canSpawn(num:int):
 
 
 func _on_timer_timeout() -> void:
-	randomizer = randi_range(0,2)
+	randomizer = randi_range(0,4)
+	choice = randi_range(0,1)
 	if fase.time >= 0.8:
 		fase.time -= 0.01
 	timer.wait_time = fase.time
 	print(timer.wait_time)
 	if fase.canspawn:
-		if randomizer == 1 or randomizer ==2:
-			var enemy_instance = enemy.instantiate()
+		if randomizer != 0:
+			var enemy_teste = enemy.pick_random()
+			var enemy_instance = enemy_teste.instantiate()
 			add_sibling(enemy_instance)
 			enemy_instance.global_position = global_position
